@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Daily Sales & Expense Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { font-family: Arial, sans-serif; background:#f4f6f8; padding:20px; }
+    h2 { margin-top:30px; }
+    table { width:100%; border-collapse:collapse; background:#fff; }
+    th, td { border:1px solid #ccc; padding:8px; text-align:left; }
+    th { background:#f0f0f0; }
+    input { width:100%; padding:6px; }
+    .total { font-weight:bold; background:#eef; }
+    .highlight { color:red; font-weight:bold; }
+  </style>
+</head>
+<body>
+
+<h1>Daily Sales & Expense Calculator</h1>
+
+<label>Date: <input type="date" id="date"></label>
+<label>Shift: <input type="text" id="shift" placeholder="AM / PM"></label>
+
+<h2>Sales</h2>
+<table>
+  <tr><th>TC</th><th>Channel</th><th>Cash</th><th>GCash</th></tr>
+  <tr><td><input type="number" class="tc"></td><td>Dine In</td><td><input type="number" class="cash"></td><td><input type="number" class="gcash"></td></tr>
+  <tr><td><input type="number" class="tc"></td><td>Takeout</td><td><input type="number" class="cash"></td><td><input type="number" class="gcash"></td></tr>
+  <tr><td><input type="number" class="tc"></td><td>Delivery</td><td><input type="number" class="cash"></td><td><input type="number" class="gcash"></td></tr>
+  <tr><td><input type="number" class="tc"></td><td>Bulk Order</td><td><input type="number" class="cash"></td><td><input type="number" class="gcash"></td></tr>
+</table>
+
+<h2>Expenses</h2>
+<table>
+  <tr><th>Expense</th><th>Amount</th></tr>
+  <tr><td>FC</td><td><input type="number" class="expense"></td></tr>
+  <tr><td>Ice</td><td><input type="number" class="expense"></td></tr>
+  <tr><td>Cleanliness</td><td><input type="number" class="expense"></td></tr>
+  <tr><td>Packaging</td><td><input type="number" class="expense"></td></tr>
+  <tr><td>Dining Needs</td><td><input type="number" class="expense"></td></tr>
+</table>
+
+<h2>Cash Summary</h2>
+<label>Cash Fund: <input type="number" id="cashFund" value="5000"></label>
+
+<p>Total Sales: <span id="totalSales">0.00</span></p>
+<p>Total Expenses: <span id="totalExpenses">0.00</span></p>
+<p class="highlight">Cash on Hand (COH): <span id="coh">0.00</span></p>
+
+<script>
+function calculate() {
+  let totalCash = 0;
+  let totalGCash = 0;
+  let totalTC = 0;
+
+  document.querySelectorAll('.cash').forEach(i => totalCash += Number(i.value || 0));
+  document.querySelectorAll('.gcash').forEach(i => totalGCash += Number(i.value || 0));
+  document.querySelectorAll('.tc').forEach(i => totalTC += Number(i.value || 0));
+
+  let totalSales = totalCash + totalGCash;
+
+  let totalExpenses = 0;
+  document.querySelectorAll('.expense').forEach(i => totalExpenses += Number(i.value || 0));
+
+  let cashFund = Number(document.getElementById('cashFund').value || 0);
+  let coh = cashFund + totalCash - totalExpenses;
+
+  document.getElementById('totalSales').innerText = totalSales.toFixed(2);
+  document.getElementById('totalExpenses').innerText = totalExpenses.toFixed(2);
+  document.getElementById('coh').innerText = coh.toFixed(2);
+}
+
+document.querySelectorAll('input').forEach(i => i.addEventListener('input', calculate));
+</script>
+
+</body>
+</html>
