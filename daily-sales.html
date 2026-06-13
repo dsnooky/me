@@ -1,78 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Daily Sales & Expense Calculator</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body { font-family: Arial, sans-serif; background:#f4f6f8; padding:20px; }
-    h2 { margin-top:30px; }
-    table { width:100%; border-collapse:collapse; background:#fff; }
-    th, td { border:1px solid #ccc; padding:8px; text-align:left; }
-    th { background:#f0f0f0; }
-    input { width:100%; padding:6px; }
-    .total { font-weight:bold; background:#eef; }
-    .highlight { color:red; font-weight:bold; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snooky Delos Reyes | Portfolio</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#0D1117;
+    color:#F0F6FC;
+    line-height:1.6;
+}
+
+header{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+    background:linear-gradient(135deg,#0D1117,#161B22);
+}
+
+.hero h1{
+    font-size:4rem;
+    color:#58A6FF;
+    margin-bottom:10px;
+}
+
+.hero h2{
+    font-size:1.5rem;
+    color:#39D353;
+    margin-bottom:20px;
+}
+
+.typing{
+    color:#8B949E;
+    font-family:monospace;
+    margin-bottom:25px;
+}
+
+.btn{
+    display:inline-block;
+    margin:10px;
+    padding:12px 25px;
+    text-decoration:none;
+    color:white;
+    border:2px solid #58A6FF;
+    border-radius:30px;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#58A6FF;
+    transform:translateY(-3px);
+}
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:#161B22;
+    display:flex;
+    justify-content:center;
+    z-index:1000;
+    padding:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,.3);
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 15px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#58A6FF;
+}
+
+section{
+    padding:80px 10%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:2.5rem;
+    color:#58A6FF;
+    margin-bottom:40px;
+}
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    gap:40px;
+    align-items:center;
+}
+
+.profile{
+    text-align:center;
+}
+
+.profile i{
+    font-size:180px;
+    color:#58A6FF;
+}
+
+.card{
+    background:#161B22;
+    padding:25px;
+    border-radius:15px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.skill-card{
+    background:#161B22;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.skill-card i{
+    font-size:50px;
+    color:#39D353;
+    margin-bottom:15px;
+}
+
+.tech{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+}
+
+.tech span{
+    background:#161B22;
+    padding:12px 20px;
+    border-radius:30px;
+    border:1px solid #58A6FF;
+}
+
+.projects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.project{
+    background:#161B22;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.project img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.project-content{
+    padding:20px;
+}
+
+.contact{
+    text-align:center;
+}
+
+.contact i{
+    color:#58A6FF;
+    margin-right:10px;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#161B22;
+    color:#8B949E;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:2.5rem;
+}
+
+.about{
+    grid-template-columns:1fr;
+}
+
+nav{
+    flex-wrap:wrap;
+}
+}
+</style>
 </head>
 <body>
 
-<h1>Daily Sales & Expense Calculator</h1>
+<nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#tech">Tools</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+</nav>
 
-<label>Date: <input type="date" id="date"></label>
-<label>Shift: <input type="text" id="shift" placeholder="AM / PM"></label>
+<header>
+    <div class="hero">
+        <div class="typing">
+            > Initializing Portfolio...<br>
+            > Loading Skills...<br>
+            > Ready.
+        </div>
 
-<h2>Sales</h2>
-<table>
-  <tr><th>TC</th><th>Channel</th><th>Cash</th><th>GCash</th></tr>
-  <tr><td><input type="number" class="tc"></td><td>Dine In</td><td><input type="number" class="cash"></td><td><input type="number" class="gcash"></td></tr>
-  <tr><td><input type="number" class="tc"></td><td>Takeout</td><td><input type="number" class="cash"></td><td><input type="number" class="gcash"></td></tr>
-  <tr><td><input type="number" class="tc"></td><td>Delivery</td><td><input type="number" class="cash"></td><td><input type="number" class="gcash"></td></tr>
-  <tr><td><input type="number" class="tc"></td><td>Bulk Order</td><td><input type="number" class="cash"></td><td><input type="number" class="gcash"></td></tr>
-</table>
+        <h1>&lt;Snooky /&gt;</h1>
+        <h2>Creative Digital Professional</h2>
 
-<h2>Expenses</h2>
-<table>
-  <tr><th>Expense</th><th>Amount</th></tr>
-  <tr><td>FC</td><td><input type="number" class="expense"></td></tr>
-  <tr><td>Ice</td><td><input type="number" class="expense"></td></tr>
-  <tr><td>Cleanliness</td><td><input type="number" class="expense"></td></tr>
-  <tr><td>Packaging</td><td><input type="number" class="expense"></td></tr>
-  <tr><td>Dining Needs</td><td><input type="number" class="expense"></td></tr>
-</table>
+        <p>
+            Graphic Designer • Video Editor • Printing Specialist
+        </p>
 
-<h2>Cash Summary</h2>
-<label>Cash Fund: <input type="number" id="cashFund" value="5000"></label>
+        <a href="#about" class="btn">Explore Portfolio</a>
+        <a href="#contact" class="btn">Contact Me</a>
+    </div>
+</header>
 
-<p>Total Sales: <span id="totalSales">0.00</span></p>
-<p>Total Expenses: <span id="totalExpenses">0.00</span></p>
-<p class="highlight">Cash on Hand (COH): <span id="coh">0.00</span></p>
+<section id="about">
+    <h2 class="section-title">About Me</h2>
 
-<script>
-function calculate() {
-  let totalCash = 0;
-  let totalGCash = 0;
-  let totalTC = 0;
+    <div class="about">
+        <div class="profile">
+            <i class="fas fa-user-circle"></i>
+        </div>
 
-  document.querySelectorAll('.cash').forEach(i => totalCash += Number(i.value || 0));
-  document.querySelectorAll('.gcash').forEach(i => totalGCash += Number(i.value || 0));
-  document.querySelectorAll('.tc').forEach(i => totalTC += Number(i.value || 0));
+        <div class="card">
+            <p>
+                Hello! I'm <strong>Snooky Delos Reyes</strong>,
+                a creative professional specializing in graphic design,
+                printing services, digital content creation, and video editing.
+            </p>
 
-  let totalSales = totalCash + totalGCash;
+            <br>
 
-  let totalExpenses = 0;
-  document.querySelectorAll('.expense').forEach(i => totalExpenses += Number(i.value || 0));
+            <p>
+                I help individuals, students, organizations, and businesses
+                transform ideas into visually engaging designs, promotional
+                materials, personalized products, and social media content.
+            </p>
 
-  let cashFund = Number(document.getElementById('cashFund').value || 0);
-  let coh = cashFund + totalCash - totalExpenses;
+            <br>
 
-  document.getElementById('totalSales').innerText = totalSales.toFixed(2);
-  document.getElementById('totalExpenses').innerText = totalExpenses.toFixed(2);
-  document.getElementById('coh').innerText = coh.toFixed(2);
-}
+            <p>
+                My goal is to provide creative solutions that combine
+                quality, functionality, and professionalism.
+            </p>
+        </div>
+    </div>
+</section>
 
-document.querySelectorAll('input').forEach(i => i.addEventListener('input', calculate));
-</script>
+<section id="skills">
+    <h2 class="section-title">Skills & Expertise</h2>
+
+    <div class="skills-grid">
+
+        <div class="skill-card">
+            <i class="fas fa-palette"></i>
+            <h3>Graphic Design</h3>
+            <p>Invitations, Stickers, Posters, Flyers, Layout Design</p>
+        </div>
+
+        <div class="skill-card">
+            <i class="fas fa-video"></i>
+            <h3>Video Editing</h3>
+            <p>CapCut Editing, Canva Videos, Reels & Shorts</p>
+        </div>
+
+        <div class="skill-card">
+            <i class="fas fa-print"></i>
+            <h3>Printing Services</h3>
+            <p>Document Printing, Photocopying, Invitations & Labels</p>
+        </div>
+
+        <div class="skill-card">
+            <i class="fas fa-bullhorn"></i>
+            <h3>Content Creation</h3>
+            <p>Marketing Graphics, Social Media Content & Branding</p>
+        </div>
+
+    </div>
+</section>
+
+<section id="tech">
+    <h2 class="section-title">Tools & Technologies</h2>
+
+    <div class="tech">
+        <span><i class="fas fa-pen-ruler"></i> Canva</span>
+        <span><i class="fas fa-film"></i> CapCut</span>
+        <span><i class="fas fa-file-word"></i> MS Office</span>
+        <span><i class="fab fa-google"></i> Google Workspace</span>
+        <span><i class="fas fa-print"></i> Print Design</span>
+        <span><i class="fas fa-hashtag"></i> Social Media</span>
+    </div>
+</section>
+
+<section id="projects">
+    <h2 class="section-title">Project Categories</h2>
+
+    <div class="projects">
+
+        <div class="project">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800" alt="">
+            <div class="project-content">
+                <h3>Invitation Designs</h3>
+                <p>Custom invitations for birthdays, weddings, and events.</p>
+            </div>
+        </div>
+
+        <div class="project">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="">
+            <div class="project-content">
+                <h3>Social Media Graphics</h3>
+                <p>Marketing materials and promotional content.</p>
+            </div>
+        </div>
+
+        <div class="project">
+            <img src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=800" alt="">
+            <div class="project-content">
+                <h3>Video Editing</h3>
+                <p>Reels, Shorts, TikTok videos, and promotional edits.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="contact">
+    <h2 class="section-title">Contact</h2>
+
+    <div class="contact">
+        <p><i class="fas fa-phone"></i> 09620926818</p>
+        <p><i class="fas fa-map-marker-alt"></i> Quezon City, Philippines</p>
+        <p><i class="fas fa-envelope"></i> your_email@example.com</p>
+
+        <br>
+
+        <h3 style="color:#39D353;">
+            Let's create something amazing together.
+        </h3>
+    </div>
+</section>
+
+<footer>
+    <p>
+        console.log("Thank you for visiting my portfolio.");
+    </p>
+</footer>
 
 </body>
 </html>
